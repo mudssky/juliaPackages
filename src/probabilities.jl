@@ -19,3 +19,15 @@ function A(m::Integer, n::Integer)
     end
     return A_inner(BigInt(m), BigInt(n))
 end
+
+function C(m::Integer, n::Integer)
+    # basic param check
+    if n == 0 || m == 0
+        throw(ArgumentError("n or m should not be zero or negative"))
+    elseif n < m 
+        throw(ArgumentError("n should be lager than m"))
+     
+    end
+    return A(BigInt(m), BigInt(n)) / factorial(BigInt(m))
+end
+
