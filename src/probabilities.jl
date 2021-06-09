@@ -20,6 +20,9 @@ function A(m::Integer, n::Integer)
     return A_inner(BigInt(m), BigInt(n))
 end
 
+"""
+计算组合数
+"""
 function C(m::Integer, n::Integer)
     # basic param check
     if n == 0 || m == 0
