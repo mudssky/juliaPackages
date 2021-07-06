@@ -15,6 +15,7 @@ include("../src/probabilities.jl")
 		@test probabilities.A(3, 3) == factorial(3)
 		@test probabilities.A(10, 10) == factorial(10)
 		@test probabilities.A(2, 3) == 6
+		@test probabilities.A(5, 12) == 95040
 	end
 	@testset "probabilities.C" begin
 		# 测试m为0的情况
@@ -28,5 +29,6 @@ include("../src/probabilities.jl")
 		@test probabilities.C(3, 3) == 1
 		@test probabilities.C(10, 10) == 1
 		@test probabilities.C(2, 3) == 3
+		@test probabilities.C(5, 12) == 792
 	end
 end
