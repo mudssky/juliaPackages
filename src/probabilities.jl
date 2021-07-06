@@ -1,3 +1,4 @@
+module probabilities
 using Base:Integer
 
 """
@@ -5,10 +6,12 @@ using Base:Integer
 """
 function A(m::Integer, n::Integer)
     # basic param check
-    if n == 0 || m == 0
-        throw(ArgumentError("n or m should not be zero or negative"))
-    elseif n < m 
+     if n < m
         throw(ArgumentError("n should be lager than m"))
+    elseif m == 1
+        return 1
+    elseif n <= 0 || m < 0
+        throw(ArgumentError("n or m should not be zero or negative"))
             end
 
     function A_inner(m, n)
@@ -25,12 +28,16 @@ end
 """
 function C(m::Integer, n::Integer)
     # basic param check
-    if n == 0 || m == 0
-        throw(ArgumentError("n or m should not be zero or negative"))
-    elseif n < m 
+    if n < m
         throw(ArgumentError("n should be lager than m"))
-     
+    elseif m == 1
+        return 1
+    elseif n <= 0 || m < 0
+        throw(ArgumentError("n or m should not be zero or negative"))
     end
     return A(BigInt(m), BigInt(n)) / factorial(BigInt(m))
 end
 
+
+export A,C
+end
