@@ -36,6 +36,20 @@ function C(m::Integer, n::Integer)
     return A(BigInt(m), BigInt(n)) / factorial(BigInt(m))
 end
 
+"""
+计算二项分布的列表
+其中参数n为发生次数，p为单次独立事件的概率
+Binomial_Distribution(n::Integer, p)
+返回值是一个列表
+"""
+function Binomial_Distribution(n::Integer, p)
+	resList = []
+	for k = 0:n
+		# @info(k)
+		push!(resList, C(k, n) * p^k * (1 - p)^(n - k))
+	end
+	return resList
+end
 
 export A,C
 end
