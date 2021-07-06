@@ -1,5 +1,5 @@
 module probabilities
-using Base:Integer
+using Base:Integer, AbstractFloat
 
 """
 计算排列数 A_n^m,输入需要是整数类型，返回值是BigInt类型，因为排列数很容易变成大数
@@ -42,7 +42,10 @@ end
 Binomial_Distribution(n::Integer, p)
 返回值是一个列表
 """
-function Binomial_Distribution(n::Integer, p)
+    function Binomial_Distribution(n::Integer, p::AbstractFloat)
+    if p > 1 || p < 0
+        throw(ArgumentError("p should be between 0-1"))
+    end
 	resList = []
 	for k = 0:n
 		# @info(k)

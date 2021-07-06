@@ -31,4 +31,11 @@ include("../src/probabilities.jl")
 		@test probabilities.C(2, 3) == 3
 		@test probabilities.C(5, 12) == 792
 	end
+    	@testset "probabilities.Binomial_Distribution" begin
+		# 参数类型检查
+		@test_throws MethodError probabilities.Binomial_Distribution(10, 0)
+		# 概率范围检查
+		@test_throws ArgumentError probabilities.Binomial_Distribution(10, 2.1)	
+		@test_throws ArgumentError probabilities.Binomial_Distribution(10, -0.2)	
+	end
 end
