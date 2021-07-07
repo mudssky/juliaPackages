@@ -38,8 +38,16 @@ include("../src/Probabilities.jl")
 		@test_throws ArgumentError Probabilities.Binomial_Distribution(10, 2.1)	
 		@test_throws ArgumentError Probabilities.Binomial_Distribution(10, -0.2)	
 	end
-    	@testset "Probabilities.Poisson_Distribution" begin`
+ 
+	@testset "Probabilities.Poisson_Distribution" begin
 		@test Probabilities.Poisson_Distribution(1, 1)[1] ≈ ℯ^-1 
 		@test Probabilities.Poisson_Distribution(200, 1)[1] ≈ ℯ^-1 
-	    end
+	end
+    	
+	@testset "Probabilities.Geometric_distribution" begin
+		@test_throws ArgumentError Probabilities.Geometric_distribution(3, 2.1)
+		@test Probabilities.Geometric_distribution(3, 0.9)[1] == 0.9
+	end
+
+
 end

@@ -62,6 +62,7 @@ end
 泊松分布
 λᵏℯ^λ / k!,k=0,1,2
 λ=n⋅p
+function Poisson_Distribution(num::Integer, λ)
 """
 function Poisson_Distribution(num::Integer, λ)
     resList = []
@@ -70,5 +71,22 @@ function Poisson_Distribution(num::Integer, λ)
     end
     return resList
 end
+
+"""
+几何分布
+他的每一项为 (1-p)^(k-1)*p
+起始项为k=1
+function Geometric_distribution(num::Integer, p::AbstractFloat)
+"""
+function Geometric_distribution(num::Integer, p::AbstractFloat)
+    check_probabilities(p)
+    resList = []
+    for k in 1:num
+        push!(resList, p * (1 - p)^(k - 1))
+    end
+    return resList
+end
+
+
 export A,C
 end
