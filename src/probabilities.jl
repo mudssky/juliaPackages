@@ -100,5 +100,18 @@ function Hypergeometric_Distribution(n::Integer, N::Integer, k::Integer, M::Inte
     return C(k, M) * C(n - k, n - M) / C(n, N)
 end
 
+"""
+    正态分布
+function Normal_Distribution_pdf(range::AbstractRange, μ, σ)
+"""
+function Normal_Distribution_pdf(range::AbstractRange, μ, σ)
+    resList = []
+    for x in range
+        constant = 1 / (sqrt(2π) * σ)
+        push!(resList, constant * ℯ^(-(x - μ)^2 / (2 * σ^2)))
+    end
+    return resList
+end
+
 export A,C
 end
