@@ -73,9 +73,9 @@ function Poisson_Distribution(num::Integer, λ)
 end
 
 """
-几何分布
+    几何分布
 他的每一项为 (1-p)^(k-1)*p
-起始项为k=1
+起始项为k=1zz
 function Geometric_distribution(num::Integer, p::AbstractFloat)
 """
 function Geometric_distribution(num::Integer, p::AbstractFloat)
@@ -87,6 +87,18 @@ function Geometric_distribution(num::Integer, p::AbstractFloat)
     return resList
 end
 
+"""
+    超几何分布
+从N件产品（其中次品M件）中任取n件，k为取到的次品数
+
+p{x=k}=C(k,M)C(n-k,n-M)/C(n,N)
+"""
+function Hypergeometric_Distribution(n::Integer, N::Integer, k::Integer, M::Integer)
+    if !(0 <= k <= n <= N  && k <= M)
+        throw(ArgumentError("0 <= k <= n <= N  &&k <= M"))
+    end
+    return C(k, M) * C(n - k, n - M) / C(n, N)
+end
 
 export A,C
 end
