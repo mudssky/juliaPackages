@@ -1,4 +1,4 @@
-module probabilities
+module Probabilities
 using Base:Integer, AbstractFloat
 
 """
@@ -36,17 +36,21 @@ function C(m::Integer, n::Integer)
     return A(BigInt(m), BigInt(n)) / factorial(BigInt(m))
 end
 
+function check_probabilities(p::AbstractFloat)
+    if p > 1 || p < 0
+    throw(ArgumentError("p should be between 0-1"))
+    end
+end
+
 """
 计算二项分布的列表
 其中参数n为发生次数，p为单次独立事件的概率
 Binomial_Distribution(n::Integer, p)
 返回值是一个列表
 """
-    function Binomial_Distribution(n::Integer, p::AbstractFloat)
-    if p > 1 || p < 0
-        throw(ArgumentError("p should be between 0-1"))
-    end
-	resList = []
+function Binomial_Distribution(n::Integer, p::AbstractFloat)
+    check_probabilities(p) 
+    resList = []
 	for k = 0:n
 		# @info(k)
 		push!(resList, C(k, n) * p^k * (1 - p)^(n - k))
@@ -54,5 +58,17 @@ Binomial_Distribution(n::Integer, p)
 	return resList
 end
 
+"""
+泊松分布
+λᵏℯ^λ / k!,k=0,1,2
+λ=n⋅p
+"""
+function Poisson_Distribution(num::Integer, λ)
+    resList = []
+    for k in 0:num
+        push!(resList, λ^k * ℯ^-λ / factorial(big(k)))
+    end
+    return resList
+end
 export A,C
 end
