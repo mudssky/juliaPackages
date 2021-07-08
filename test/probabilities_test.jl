@@ -40,14 +40,17 @@ include("../src/Probabilities.jl")
 	end
  
 	@testset "Probabilities.Poisson_Distribution" begin
-		@test Probabilities.Poisson_Distribution(1, 1)[1] ≈ ℯ^-1 
-		@test Probabilities.Poisson_Distribution(200, 1)[1] ≈ ℯ^-1 
+		@test Probabilities.Poisson_Distribution(0:5, 1)[1] ≈ ℯ^-1 
+		@test Probabilities.Poisson_Distribution(0:200, 1)[1] ≈ ℯ^-1 
 	end
     	
 	@testset "Probabilities.Geometric_distribution" begin
-		@test_throws ArgumentError Probabilities.Geometric_distribution(3, 2.1)
-		@test Probabilities.Geometric_distribution(3, 0.9)[1] == 0.9
+		@test_throws ArgumentError Probabilities.Geometric_distribution(1:3, 2.1)
+		@test Probabilities.Geometric_distribution(1:3, 0.9)[1] == 0.9
 	end
 
+	@testset "Probabilities.checks" begin
+		@test_throws ArgumentError Probabilities.check_is_nonnegative(-1, 3)
+	end
 
 end
